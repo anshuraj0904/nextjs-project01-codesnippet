@@ -8,8 +8,8 @@ export default async function Home() {
   }
 
   return (
-    <div>
-      <div className="flex items-center justify-between">
+    <div className="container mx-auto p-5">
+      <div className="container mx-auto flex items-center justify-between">
       <h1 className="text-4xl">My Snippets</h1>
         <Button>
           <Link href="/snippet/new">New</Link>

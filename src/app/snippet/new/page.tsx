@@ -42,8 +42,8 @@ const CreateSnippetpage = () => {
         </div>
 
         <div className="flex gap-x-2">
-          <Label>Code:</Label>
-          <Textarea name="code" id="code"></Textarea>
+          <Label>Code:</Label>          
+          <Textarea name="code" id="code" className="bg-gray-900 text-green-300 font-mono text-sm p-4 rounded-lg overflow-x-auto mt-4 shadow-md"></Textarea>
         </div>
 
         <Button className="max-w-18 cursor-pointer" type="submit">Create</Button>
