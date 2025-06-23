@@ -15,7 +15,7 @@ export default async function Home() {
           <Link href="/snippet/new">New</Link>
         </Button>
       </div>
-      {snippets.map((snippet) => (
+      {snippets.map((snippet: any) => (
         <div
           key={snippet.id}
           className="bg-white flex justify-between  p-5 my-5 w-6/12 shadow-xl rounded-md"
