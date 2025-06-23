@@ -2,7 +2,7 @@ import { prisma } from "@/lib/prisma";
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { redirect } from "next/navigation";
-
+import Link from "next/link";
 
 /*
 // type snippetDetail = {
@@ -48,7 +48,7 @@ async function codeCRUD(
       <h1 className="font-bold text-4xl text-center">{snippet.title}</h1>
 
        <div className="flex gap-x-2 mt-4">
-      <Button variant={"outline"} className="cursor-pointer" >Edit</Button>
+      <Button variant={"outline"} className="cursor-pointer"><Link  href={`/snippet/${snippet.id}/edit`}>Edit</Link></Button>
       <Button variant={"destructive"} className="cursor-pointer" onClick={handleDeleteSnippet}>Delete</Button>
        </div>
 
