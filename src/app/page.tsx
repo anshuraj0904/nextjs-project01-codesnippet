@@ -5,6 +5,14 @@ import { prisma } from "@/lib/prisma";
 export default async function Home() {
   const snippets = await prisma.snippet.findMany();
   if (!snippets || snippets.length === 0) {
+    return (
+      <div className="container mx-auto p-5">
+        <h1 className="text-4xl">No Snippets Found</h1>
+        <Button>
+          <Link href="/snippet/new">Create a Snippet</Link>
+        </Button>
+      </div>
+    );
   }
 
   return (

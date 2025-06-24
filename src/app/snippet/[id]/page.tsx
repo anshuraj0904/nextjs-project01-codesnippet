@@ -3,6 +3,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import * as actions from "@/actions"
 
 /*
 // type snippetDetail = {
@@ -25,17 +26,7 @@ async function codeCRUD(
   });
 
 
-  const handleDeleteSnippet = async()=>{
-    "use server";
-    await prisma.snippet.delete({
-      where: {
-        id,
-      },
-    });
-
-    redirect("/");
-  }
-
+  
   if (!snippet) {
     return (
       <div className="container mx-auto max-w-2xl p-5">
@@ -43,13 +34,17 @@ async function codeCRUD(
       </div>
     );
   }
+  
+  const DeleteSnippetAction = actions.deleteSnippet.bind(null, id)
+  // Here, in the first argument, we always pass something, whose value can be set after some actions, from the server end, as we don't need anything here, so we're passing null.  
+  
   return (
     <div className="container mx-auto max-w-2xl p-5 bg-white shadow-md rounded-md">
       <h1 className="font-bold text-4xl text-center">{snippet.title}</h1>
 
        <div className="flex gap-x-2 mt-4">
       <Button variant={"outline"} className="cursor-pointer"><Link  href={`/snippet/${snippet.id}/edit`}>Edit</Link></Button>
-      <Button variant={"destructive"} className="cursor-pointer" onClick={handleDeleteSnippet}>Delete</Button>
+      <Button variant={"destructive"} className="cursor-pointer" onClick={DeleteSnippetAction}>Delete</Button>
        </div>
 
       <pre className="bg-gray-900 text-green-300 font-mono text-sm p-4 rounded-lg overflow-x-auto mt-4 shadow-md">
