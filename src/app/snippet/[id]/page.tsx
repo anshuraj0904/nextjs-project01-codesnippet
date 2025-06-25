@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import Link from "next/link";
 import * as actions from "@/actions"
 
@@ -19,6 +19,7 @@ async function codeCRUD(
 ) {
   const id = parseInt((await params).id); // Extracting the id from the params.
 
+  await new Promise((resolve)=> setTimeout(resolve,2000))
   const snippet = await prisma.snippet.findUnique({
     where: {
       id,
@@ -29,9 +30,8 @@ async function codeCRUD(
   
   if (!snippet) {
     return (
-      <div className="container mx-auto max-w-2xl p-5">
-        <h1 className="text-4xl">Snippet not found</h1>
-      </div>
+      notFound()
+      // We don't need to pass that as a component, we'll instead pass it as the function call, as it is a pre-defined thing. This here though, will bring the UI created by us in the not-found.tsx, a we've overridden the default one.
     );
   }
   
