@@ -13,6 +13,8 @@ import * as actions from "@/actions"
 --> We can also use this one for the type definition, but it's not necessary as we can directly use the type in the function parameter.
 */
 
+/* As we have used generated static params here, it is now a static route.*/
+
 async function codeCRUD(
     
   { params }: { params: Promise<{ id: string }> } // This type is defined. 
