@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import Link from "next/link";
 import * as actions from "@/actions"
 
@@ -55,3 +55,18 @@ async function codeCRUD(
 }
 
 export default codeCRUD;
+
+
+export const generateStaticParams = async () => {
+  const snippets = await prisma.snippet.findMany()
+
+  return snippets.map((snippet)=>{
+    return{
+      id:snippet.id.toString()
+    }
+  })
+}
+
+// This function above is used to generate the static params for the dynamic route. 
+// It will generate the static params for all the snippets in the database, so that the pages can be pre-rendered at build time. 
+// This is useful for SEO and performance, as it reduces the load time of the page.

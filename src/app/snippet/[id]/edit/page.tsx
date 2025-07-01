@@ -5,6 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 
 type snippetType = {
 params:Promise<{id:string}>
@@ -28,7 +29,7 @@ const editSnippetPage = async ({params}: snippetType) => {
     );
   }
 
-  console.log("id", id);
+  // console.log("id", id);
 
 
   const handleEditCode = async(formData: FormData) => {
@@ -44,8 +45,9 @@ const editSnippetPage = async ({params}: snippetType) => {
     }) 
     // Updating the code in the snippet object.
 
-    console.log("snippet", updatedSnippet);
-    redirect("/"); // Redirecting to the home page after editing the code.
+    // revalidatePath(`/snippet/${id}`);  
+    // console.log("snippet", updatedSnippet);
+    redirect('/'); // Redirecting to the home page after editing the code.
   }
 
 
